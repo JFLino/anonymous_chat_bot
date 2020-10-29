@@ -24,7 +24,6 @@ bot.onText(/\/start/,(msg)=>{
         bot.sendMessage(msg.chat.id,"Выберите команду",{reply_markup: start_keyboard})
     } catch (error) {
         console.log(error)
-        console.log(27)
     }
 })
 
@@ -47,7 +46,6 @@ bot.onText(/🔍 Найти собеседника|🔍 Найти нового 
         await new_user.save()
     } catch (error) {
         console.log(error)
-        console.log(50)
     }
 })
 
@@ -58,7 +56,6 @@ bot.onText(/❌ Выйти из приватного чата|❌ Остонов
         bot.sendMessage(msg.chat.id,"Выберите команду",{reply_markup: start_keyboard})
     } catch (error) {
         console.log(error)
-        console.log(61)
     }
 })
 
@@ -69,7 +66,6 @@ bot.onText(/📊 Сейчас онлайн/,async (msg)=>{
         bot.sendMessage(msg.chat.id, "Пользователей: " + all.length)
     } catch (error) {
         console.log(error)
-        console.log(72)
     }
 })
 
@@ -82,7 +78,6 @@ bot.onText(/.+/,async (msg)=>{
         send_media(msg)
     } catch (error) {
         console.log(error)
-        console.log(85)
     }
 })
 
@@ -122,7 +117,6 @@ async function isChatExists(id){
         await bot.sendChatAction(id,"typing")
         return true
     }catch (error) {
-        console.log(125)
         return false
     }
 }
@@ -142,7 +136,6 @@ async function find_and_delete(id){
         }
     } catch (error) {
         console.log(error)
-        console.log(145)
     }
 }
 
@@ -181,7 +174,6 @@ async function send_media(msg){
         }
     } catch (error) {
         console.log(error)
-        console.log(184)
     }
 }
 
@@ -190,7 +182,6 @@ async function start(){
         await mongoose.connect(config.MONGODB_URL, {useNewUrlParser: true, useUnifiedTopology: true})
     } catch (error) {
         console.log(error)
-        console.log(193)
     }
 }
 start()
