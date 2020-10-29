@@ -179,11 +179,10 @@ async function send_media(msg){
 
 async function start(){
     try {
+        require('http').createServer().listen(process.env.PORT || 5000)
         await mongoose.connect(config.MONGODB_URL, {useNewUrlParser: true, useUnifiedTopology: true})
     } catch (error) {
         console.log(error)
     }
 }
 start()
-
-require('http').createServer().listen(process.env.PORT || 5000)
