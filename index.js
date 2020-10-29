@@ -18,9 +18,13 @@ const talk_keyboard = {
 }
 
 bot.onText(/\/start/,(msg)=>{
-    bot.deleteMessage(msg.chat.id,msg.message_id)
-    find_and_delete(msg.chat.id)
-    bot.sendMessage(msg.chat.id,"Выберите команду",{reply_markup: start_keyboard})
+    try {
+        bot.deleteMessage(msg.chat.id,msg.message_id)
+        find_and_delete(msg.chat.id)
+        bot.sendMessage(msg.chat.id,"Выберите команду",{reply_markup: start_keyboard})
+    } catch (error) {
+        console.log(error)
+    }
 })
 
 
@@ -132,36 +136,40 @@ async function find_and_delete(id){
 }
 
 async function send_media(msg){
-    let user = await Couple.findOne({chat_id: msg.chat.id})
+    try {
+        let user = await Couple.findOne({chat_id: msg.chat.id})
 
-    if(user){
-        let partner = await Couple.findOne({chat_id: user.partner_id})
-        if(partner){
-            if((await isChatExists(partner.chat_id))){
-                if(msg.photo)
-                    bot.sendPhoto(partner.chat_id,msg.photo[0].file_id,{caption: msg.caption})
-                else if(msg.voice)
-                    bot.sendVoice(partner.chat_id,msg.voice.file_id)
-                else if(msg.audio)
-                    bot.sendAudio(partner.chat_id,msg.audio.file_id,{caption: msg.caption})
-                else if(msg.video)
-                    bot.sendVideo(partner.chat_id,msg.video.file_id,{caption: msg.caption})
-                else if(msg.sticker)
-                    bot.sendSticker(partner.chat_id,msg.sticker.file_id)
-                else if(msg.text)
-                    bot.sendMessage(partner.chat_id,msg.text)
-                else if(msg.document)
-                    bot.sendDocument(partner.chat_id,msg.document.file_id,{caption: msg.caption})
-                else if(msg.video_note)
-                    bot.sendVideoNote(partner.chat_id,msg.video_note.file_id)
-                else if(msg.location)
-                    bot.sendLocation(partner.chat_id,msg.location.latitude,msg.location.longitude)
-                else if(msg.contact)
-                    bot.sendContact(partner.chat_id,msg.contact.phone_number,msg.contact.first_name)
-            }else{
-                find_and_delete(partner.chat_id)
+        if(user){
+            let partner = await Couple.findOne({chat_id: user.partner_id})
+            if(partner){
+                if((await isChatExists(partner.chat_id))){
+                    if(msg.photo)
+                        bot.sendPhoto(partner.chat_id,msg.photo[0].file_id,{caption: msg.caption})
+                    else if(msg.voice)
+                        bot.sendVoice(partner.chat_id,msg.voice.file_id)
+                    else if(msg.audio)
+                        bot.sendAudio(partner.chat_id,msg.audio.file_id,{caption: msg.caption})
+                    else if(msg.video)
+                        bot.sendVideo(partner.chat_id,msg.video.file_id,{caption: msg.caption})
+                    else if(msg.sticker)
+                        bot.sendSticker(partner.chat_id,msg.sticker.file_id)
+                    else if(msg.text)
+                        bot.sendMessage(partner.chat_id,msg.text)
+                    else if(msg.document)
+                        bot.sendDocument(partner.chat_id,msg.document.file_id,{caption: msg.caption})
+                    else if(msg.video_note)
+                        bot.sendVideoNote(partner.chat_id,msg.video_note.file_id)
+                    else if(msg.location)
+                        bot.sendLocation(partner.chat_id,msg.location.latitude,msg.location.longitude)
+                    else if(msg.contact)
+                        bot.sendContact(partner.chat_id,msg.contact.phone_number,msg.contact.first_name)
+                }else{
+                    find_and_delete(partner.chat_id)
+                }
             }
         }
+    } catch (error) {
+        console.log(error)
     }
 }
 
