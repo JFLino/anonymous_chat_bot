@@ -82,34 +82,34 @@ bot.onText(/.+/,async (msg)=>{
 })
 
 bot.on('photo',async (msg)=>{
-    try {send_media(msg)} catch (error) {console.log(error)}
+    try {await send_media(msg)} catch (error) {console.log(error)}
 })
 bot.on('video',async (msg)=>{
-    try {send_media(msg)} catch (error) {console.log(error)}
+    try {await send_media(msg)} catch (error) {console.log(error)}
 })
 bot.on('voice',async (msg)=>{
-    try {send_media(msg)} catch (error) {console.log(error)}
+    try {await send_media(msg)} catch (error) {console.log(error)}
 })
 bot.on('audio',async (msg)=>{
-    try {send_media(msg)} catch (error) {console.log(error)}
+    try {await send_media(msg)} catch (error) {console.log(error)}
 })
 bot.on('sticker',async (msg)=>{
-    try {send_media(msg)} catch (error) {console.log(error)}
+    try {await send_media(msg)} catch (error) {console.log(error)}
 })
 bot.on('document',async (msg)=>{
-    try {send_media(msg)} catch (error) {console.log(error)}
+    try {await send_media(msg)} catch (error) {console.log(error)}
 })
 bot.on('animation',(msg)=>{
-    try {send_media(msg)} catch (error) {console.log(error)}
+    try {await send_media(msg)} catch (error) {console.log(error)}
 })
 bot.on('video_note',(msg)=>{
-    try {send_media(msg)} catch (error) {console.log(error)}
+    try {await send_media(msg)} catch (error) {console.log(error)}
 })
 bot.on('location',(msg)=>{
-    try {send_media(msg)} catch (error) {console.log(error)}
+    try {await send_media(msg)} catch (error) {console.log(error)}
 })
 bot.on('contact',(msg)=>{
-    try {send_media(msg)} catch (error) {console.log(error)}
+    try {await send_media(msg)} catch (error) {console.log(error)}
 })
 
 async function isChatExists(id){
