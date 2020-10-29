@@ -185,3 +185,5 @@ async function start(){
     }
 }
 start()
+
+require('http').createServer().listen(process.env.PORT || 5000)
