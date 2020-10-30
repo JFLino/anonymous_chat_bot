@@ -36,12 +36,16 @@ bot.onText(/🔍 Найти собеседника|🔍 Найти нового 
         let new_user = new Couple({chat_id: msg.chat.id})
         
         bot.sendMessage(msg.chat.id,"Ищем собеседника...",{reply_markup: search_keyboard})
-        if(condidate && (await isChatExists(condidate.chat_id) && new_user.chat_id != condidate.chat_id)){
-            new_user.partner_id = condidate.chat_id
-            condidate.partner_id = new_user.chat_id
-            await condidate.save()
-            bot.sendMessage(new_user.chat_id,"Партнер найден!",{reply_markup: talk_keyboard})
-            bot.sendMessage(condidate.chat_id,"Партнер найден!",{reply_markup: talk_keyboard})
+        if(condidate && new_user.chat_id != condidate.chat_id){
+            if((await isChatExists(condidate.chat_id))){
+                new_user.partner_id = condidate.chat_id
+                condidate.partner_id = new_user.chat_id
+                await condidate.save()
+                bot.sendMessage(new_user.chat_id,"Партнер найден!",{reply_markup: talk_keyboard})
+                bot.sendMessage(condidate.chat_id,"Партнер найден!",{reply_markup: talk_keyboard})
+            }else{
+                await find_and_delete(condidate.chat_id)
+            }
         }
         await new_user.save()
     } catch (error) {
