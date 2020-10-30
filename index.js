@@ -98,16 +98,16 @@ bot.on('sticker',async (msg)=>{
 bot.on('document',async (msg)=>{
     try {await send_media(msg)} catch (error) {console.log(error)}
 })
-bot.on('animation',(msg)=>{
+bot.on('animation',async (msg)=>{
     try {await send_media(msg)} catch (error) {console.log(error)}
 })
-bot.on('video_note',(msg)=>{
+bot.on('video_note',async (msg)=>{
     try {await send_media(msg)} catch (error) {console.log(error)}
 })
-bot.on('location',(msg)=>{
+bot.on('location',async (msg)=>{
     try {await send_media(msg)} catch (error) {console.log(error)}
 })
-bot.on('contact',(msg)=>{
+bot.on('contact',async (msg)=>{
     try {await send_media(msg)} catch (error) {console.log(error)}
 })
 
