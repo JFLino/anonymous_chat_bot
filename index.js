@@ -1,6 +1,6 @@
+require('dotenv').config()
 const TelegramBot = require("node-telegram-bot-api")
-const config = require("./config")
-const bot = new TelegramBot(config.BOT_TOKEN,{polling: true})
+const bot = new TelegramBot(process.env.BOT_TOKEN,{polling: true})
 const mongoose = require('mongoose')
 const Couple = require('./schema')
 const commands = ['/start','🔍 Найти собеседника','📊 Сейчас онлайн','❌ Остоновить поиск','❌ Выйти из приватного чата','🔍 Найти нового собеседника']
@@ -182,7 +182,7 @@ async function send_media(msg){
 
 async function start(){
     try {
-        await mongoose.connect(config.MONGODB_URL, {useNewUrlParser: true, useUnifiedTopology: true})
+        await mongoose.connect(process.env.MONGODB_URL, {useNewUrlParser: true, useUnifiedTopology: true})
     } catch (error) {
         console.log(error)
     }
